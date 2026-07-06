@@ -22,3 +22,10 @@ install.packages("maps")
 To run the analysis, drop the CSV file into the data folder (as `data/sightings.csv`) and run `r/analysis/heatmap.R`. The script will output the heatmap as a PNG into the `output` folder.
 
 
+## Reproducibility
+
+If you would like to rerun a previous release, you can find them at
+
+https://github.com/ps-template-demos/r-script-demo/releases
+
+In the release, you will find a ZIP file of the code, and the sightings.csv file used. Simply download the source code, copy the CSV into the data folder, and run the analysis.
