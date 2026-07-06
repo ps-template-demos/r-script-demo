@@ -47,7 +47,7 @@ if (interactive()) {
 }
 
 png(filename = output_file, width = 1800, height = 1200, res = 200)
-on.exit(dev.off(), add = TRUE)
 draw_heatmap(coordinates)
+dev.off()
 
-message("Saved heatmap to ", output_file)
+message("Saved heatmap to ", normalizePath(output_file, mustWork = FALSE))

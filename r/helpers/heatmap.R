@@ -5,6 +5,13 @@
 #'
 #' @return The input coordinates, invisibly.
 draw_heatmap <- function(coordinates) {
+  if (!requireNamespace("maps", quietly = TRUE)) {
+    stop(
+      "The maps package is required to draw the world outline. ",
+      "Run renv::restore() in the R console, then rerun this script."
+    )
+  }
+
   if (!all(c("latitude", "longitude") %in% colnames(coordinates))) {
     stop("coordinates must contain latitude and longitude columns")
   }
@@ -29,6 +36,14 @@ draw_heatmap <- function(coordinates) {
     xlab = "Longitude",
     ylab = "Latitude",
     main = "Seagrass Sightings Heatmap"
+  )
+
+  maps::map(
+    "world",
+    add = TRUE,
+    interior = FALSE,
+    col = adjustcolor("gray20", alpha.f = 0.8),
+    lwd = 0.5
   )
 
   points(
