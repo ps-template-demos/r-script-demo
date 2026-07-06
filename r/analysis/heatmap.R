@@ -1,5 +1,7 @@
 # Create a latitude/longitude heatmap from Seagrass Spotter sightings.
 
+source(file.path("r", "helpers", "heatmap.R"))
+
 input_file <- file.path("data", "sightings.csv")
 output_file <- file.path("output", "sightings_heatmap.png")
 
@@ -40,36 +42,12 @@ if (nrow(coordinates) == 0) {
 
 dir.create(dirname(output_file), showWarnings = FALSE, recursive = TRUE)
 
-heatmap_colours <- colorRampPalette(
-  c("#f7fbff", "#c6dbef", "#6baed6", "#2171b5", "#08306b")
-)
+if (interactive()) {
+  draw_heatmap(coordinates)
+}
 
 png(filename = output_file, width = 1800, height = 1200, res = 200)
-par(mar = c(4.5, 4.5, 3, 1), bg = "white")
-
-smoothScatter(
-  x = coordinates$longitude,
-  y = coordinates$latitude,
-  nrpoints = 0,
-  colramp = heatmap_colours,
-  xlab = "Longitude",
-  ylab = "Latitude",
-  main = paste0(
-    "Seagrass Sightings Heatmap (",
-    format(nrow(coordinates), big.mark = ","),
-    " valid records)"
-  )
-)
-
-points(
-  x = coordinates$longitude,
-  y = coordinates$latitude,
-  pch = 16,
-  cex = 0.15,
-  col = adjustcolor("black", alpha.f = 0.25)
-)
-
-box()
-dev.off()
+on.exit(dev.off(), add = TRUE)
+draw_heatmap(coordinates)
 
 message("Saved heatmap to ", output_file)
