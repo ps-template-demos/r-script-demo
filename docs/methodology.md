@@ -1,0 +1,1 @@
+This analysis was produced using the data from verified sightings from SeagrassSpotter, using `smoothScatter` to create a heatmap, and `points` to mark actual locations.

@@ -8,7 +8,7 @@ draw_heatmap <- function(coordinates) {
   if (!requireNamespace("maps", quietly = TRUE)) {
     stop(
       "The maps package is required to draw the world outline. ",
-      "Run renv::restore() in the R console, then rerun this script."
+      "Run install.packages(\"maps\") in the R console, then rerun this script."
     )
   }
 
